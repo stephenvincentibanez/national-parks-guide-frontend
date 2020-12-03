@@ -1,8 +1,5 @@
     const URL = "http://localhost:3000/"
 
-    // const search = document.getElementById("search")
-    // search.addEventListener('submit', (e)=>handleSearch(e))
-
     const stateList = document.getElementById("state-dropdown")
     stateList.addEventListener('submit', (e)=>handleStateSubmit(e))
     
@@ -26,7 +23,9 @@
             })
         })
         .then(r => r.json())
-        .then(console.log)
+        .then(e.target.username.value = "")
+        .then(alert("User succesfully created!"))
+        
     }
 
     function handleStateSubmit(e){
@@ -40,11 +39,11 @@
     function iterateParks(parks){
         parksContainer.innerHTML = ""
         for(const park of parks){
-            buildLi(park)
+            buildCard(park)
         }
     }
 
-    function buildLi(park){
+    function buildCard(park){
         const card = document.createElement("div")
         card.className = "card"
 
@@ -79,7 +78,6 @@
         let image = park.images.split(" ").find(element => element.includes("url"))
         image = image.slice(8)
         image = image.substring(0, image.length - 3)
-        console.log(image)
         parksContainer.innerHTML = ""
         parkShow = document.createElement("div")
         parkShow.className = "card"
@@ -105,20 +103,55 @@
       </div>
         `
 
-        
+        // const reviewForm = document.createElement("form")
+        // reviewForm.id = "review"
+        // reviewForm.innerHTML = `
+        // <label> Username: </label><br>
+        // <input name="username" type="text"><br>
+        // <label> Review: </label><br>
+        // <input name="review" type="textarea"><br>
+        // <input type="submit">
+        // `
+        buildReviewForm()
+        let reviewForm = document.getElementById("review")
 
-        const reviewForm = document.createElement("form")
-        reviewForm.id = "review"
-        reviewForm.innerHTML = `
-        <label> Username: </label><br>
-        <input name="username" type="text"><br>
-        <label> Review: </label><br>
-        <input name="review" type="textarea"><br>
-        <input type="submit">
-        `
+        parksContainer.appendChild(parkShow)
         reviewForm.addEventListener('submit', (e) => postReview(e))
-        parksContainer.append(parkShow, reviewForm)
     }
+
+    function buildReviewForm(users){
+        console.log(users)
+        let reviewForm = document.createElement("form")
+        reviewForm.id = "review"
+        const userLabel = document.createElement("label")
+        userLabel.textContent = "Username: "
+        const userSelect = document.createElement("select")
+
+        for(const user of users){
+            const userOption = document.createElement("option")
+            userOption.textContent = user.username
+            userSelect.append(userOption)
+        }
+
+        const reviewLabel = document.createElement("label")
+        reviewLabel.textContent = "Review: "
+
+        const reviewText = document.createElement("input")
+        reviewText.type = "text"
+
+        const reviewSubmit = document.createElement("input")
+        reviewSubmit.type = "submit"
+
+        reviewForm.appendChild(userLabel, userSelect, reviewLabel, reviewText, reviewSubmit)
+        parksContainer.appendChild(reviewForm)
+    }
+
+    function getUsers(){
+        fetch(URL + "users")
+        .then(r => r.json())
+        .then(users => buildReviewForm(users))
+    }
+    getUsers()
 
     function postReview(e){
         e.preventDefault()
@@ -127,9 +160,3 @@
         fetch(URL + "reviews")
     }
    
-    // function handleSearch(e){
-    //     e.preventDefault()
-    //     const query = e.target.query.value
-    //     fetch(PARKS_URL + `/`)
-    //     //use that query thing from yesterday discussion question in fetch request
-    // }
