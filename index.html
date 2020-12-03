@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>The National Park Guide</title>
+  <title>US PARKS GUIDE</title>
  
   <link rel="stylesheet" href="style.css">
   <script defer src="index.js"></script>
@@ -12,18 +12,32 @@
 </head>
 
 <body id="body">
-    <h1 class="h1"> Welcome to the National Park Guide </h1>
+    <h1> US Parks Guide </h1>
 
-    <!-- <div id="map" class="center"></div> -->
+    <div id="photo-container">
+    <img id="main-photo" src="https://www.visitcalifornia.com/sites/visitcalifornia.com/files/styles/welcome_image/public/vc_amazingalternativestocaliforniasnatparks_anzaborrego_st_rf_917923758_1280x640.jpg">
+    </div>
+    <!-- <div id="map></div> -->
 
-    <div class="center">
+    <!-- <div >
     <form id="search">
         <input name="query" type="text" placeholder="Search for a park...">
         <input type="submit">
     </form>
-    </div>  
+    </div>   -->
     <br>
     <br>
+
+    <div id="sign-up-div">
+    <h4> Sign Up! </h4>
+    <form id="sign-up"> 
+        <label> Username </label><br>
+        <input name="username" type="text"><br>
+        <input type="Submit">
+    </form>
+    </div>
+    <br><br>
+
     <form id="state-dropdown">
         <label> Find Parks By State </label><br>
         <select name="states">
@@ -81,12 +95,9 @@
         <br>
         <input type="submit" value="Submit">
     </form>
-    <!-- <form id="review">
-        <label> Username: </label><br>
-        <input type="text"><br>
-        <label> Review: </label><br>
-        <input type="textarea"><br>
-        <input type="submit">
-    </form> -->
+
+    <div id="parks-container">
+
+    </div>
 </body>
 </html>

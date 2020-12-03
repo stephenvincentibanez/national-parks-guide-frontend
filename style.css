@@ -1,12 +1,33 @@
 #body{
     background-color: beige;
+    text-align: center;
 }
 
 .center {
     margin: auto;
 }
 
-.h1 {
+h1 {
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#main-photo{
+    width: auto;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#state-dropdown{
+    display: inline-block
+}
+
+.list-image{
+    width: auto;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
