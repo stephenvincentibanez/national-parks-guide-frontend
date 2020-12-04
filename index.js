@@ -88,7 +88,9 @@
         </div>
         </div>
         `
+        reviewContainer.innerHTML = ""
         getUsers()
+        getReviews(park)
         const reviewHeader = document.createElement("h3")
         reviewHeader.textContent = "Reviews"
         parksContainer.appendChild(parkShow)
@@ -176,30 +178,55 @@
         })
         .then(r => r.json())
         .then(review => appendReview(review))
+        .then(()=>{(e.target.username.value = "");(e.target.review.value = "")})
     }
 
     //APPENDS REVIEW TO DOM AFTER POSTING TO DB 
     function appendReview(review){
         const reviewDiv = document.createElement("div")
-        reviewDiv.className = "review"
+        reviewDiv.className = "card-content"
+
         const userH4 = document.createElement("h4")
         userH4.innerText = `User: ${review.username}`
 
         const reviewP = document.createElement("p")
         reviewP.innerText = `Review: ${review.comment}`
 
-        reviewContainer.append(userH4, reviewP)
+        const updateBtn = document.createElement("button")
+        updateBtn.textContent = "Update Review"
+        updateBtn.addEventListener("click", (e) => handleUpdate(e))
+
+        const deleteBtn = document.createElement("button")
+        deleteBtn.textContent = "Delete Review"
+        deleteBtn.addEventListener("click", (e) => handleDelete(review, e))
+
+        reviewDiv.append(userH4, reviewP, updateBtn, deleteBtn)
+        reviewContainer.appendChild(reviewDiv)
+    }
+
+    function handleUpdate(e){
+        console.log(e.target)
+    }
+
+    function handleDelete(review, e){
+        e.target.parentElement.remove()
+        fetch(URL + `reviews/${review.id}`, {
+            method: "DELETE"
+        })
+        .then(r => r.json())
     }
     
-        //FETCH ALL REVIEW FOR A PARK
-    // function getReviewsForPark(){
-    //     fetch(URL + "reviews")
-    //     .then(r => r.json())
-    //     .then(reviews => iterateReviews(reviews))
-    // }
+    // FETCH ALL REVIEWS
+    function getReviews(park){
+        fetch(URL + "reviews")
+        .then(r => r.json())
+        .then(reviews => iterateReviews(reviews, park))
+    }
    
-    // function iterateReviews(reviews){
-    //     for(const review of reviews){
-    //         appendReview(review)
-    //     }
-    // }
+    function iterateReviews(reviews, park){
+        for(const review of reviews){
+            if (review.park_id === park.id){
+            appendReview(review)
+            }
+        }
+    }
