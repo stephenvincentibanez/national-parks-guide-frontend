@@ -14,6 +14,9 @@
     //CLICKING SUBMIT ON A STATE
     function handleStateSubmit(e){
         e.preventDefault()
+        signUpDiv.remove()
+        photoContainer.remove()
+        reviewContainer.innerHTML = ""
         const state = e.target.states.value
         fetch(URL + `park_search?query=${state}`)
         .then(res => res.json())
@@ -137,9 +140,8 @@
     }
     
     //USER SIGNUP AND POST TO DATABASE
-    function postUser(e, park, user){
+    function postUser(e){
         e.preventDefault()
-        console.log(park)
         const username = e.target.username.value
         fetch(URL + "users", {
             method: "POST",
@@ -152,7 +154,8 @@
             })
         })
         .then(r => r.json())
-        .then(e.target.username.value = "")
+        // .then(e.target.username.value = "")
+        .then(signUpDiv.remove())
         .then(alert("User succesfully created!"))
     }
 
@@ -207,12 +210,14 @@
 
     //UPDATE A REVIEW
     function handleUpdate(review, e){
+        // debugger
         let form = document.getElementById("review")
         form.review.value = e.target.parentElement.childNodes[1].textContent.slice(8)
+        form.username.value = e.target.parentElement.childNodes[0].textContent.slice(6)
         form.submit.remove()
 
         const updateSubmit = document.createElement("button")
-        updateSubmit.textContent = "Update This Review!"
+        updateSubmit.textContent = "Submit Updated Review"
         form.appendChild(updateSubmit)
         updateSubmit.addEventListener("click", (e) => patchReview(review, e))
     }
