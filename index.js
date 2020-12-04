@@ -114,11 +114,11 @@
         const reviewLabel = document.createElement("label")
         reviewLabel.textContent = "Review: "
         
-        const reviewText = document.createElement("input")
+        const reviewText = document.createElement("textarea")
         reviewText.setAttribute("name", "review")
-        reviewText.type = "textarea"
         
         const reviewSubmit = document.createElement("input")
+        reviewSubmit.setAttribute("name", "submit")
         reviewSubmit.type = "submit"
         
         const br1 = document.createElement('br')
@@ -190,11 +190,12 @@
         userH4.innerText = `User: ${review.username}`
 
         const reviewP = document.createElement("p")
+        reviewP.setAttribute("name", "review")
         reviewP.innerText = `Review: ${review.comment}`
 
         const updateBtn = document.createElement("button")
         updateBtn.textContent = "Update Review"
-        updateBtn.addEventListener("click", (e) => handleUpdate(e))
+        updateBtn.addEventListener("click", (e) => handleUpdate(review, e))
 
         const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete Review"
@@ -204,10 +205,34 @@
         reviewContainer.appendChild(reviewDiv)
     }
 
-    function handleUpdate(e){
-        console.log(e.target)
+    //UPDATE A REVIEW
+    function handleUpdate(review, e){
+        let form = document.getElementById("review")
+        form.review.value = e.target.parentElement.childNodes[1].textContent.slice(8)
+        form.submit.remove()
+
+        const updateSubmit = document.createElement("button")
+        updateSubmit.textContent = "Update This Review!"
+        form.appendChild(updateSubmit)
+        updateSubmit.addEventListener("click", (e) => patchReview(review, e))
     }
 
+    function patchReview(review, e){
+        fetch(URL + `reviews/${review.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                comment: e.target.parentElement.childNodes[4].value
+            })
+        })
+        .then(r => r.json())
+        .then(console.log)
+    }
+
+    //DELETE A REVIEW
     function handleDelete(review, e){
         e.target.parentElement.remove()
         fetch(URL + `reviews/${review.id}`, {
