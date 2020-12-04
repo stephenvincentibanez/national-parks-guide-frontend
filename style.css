@@ -1,6 +1,7 @@
 #body{
     background-color: tan;
     text-align: center;
+    color: brown;
 }
 
 .center {
@@ -30,6 +31,8 @@ h1, h3, h4, p, form {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 15px;
+    border-radius: 20px;
 }
 
 
@@ -40,9 +43,7 @@ h1, h3, h4, p, form {
 
 .card{
   display: inline-block;
-  /* display: block; */
   border-radius: 15px;
-  box-shadow: blue;
   color: brown;
   max-width: 50%;
   position: relative;
@@ -74,7 +75,7 @@ h1, h3, h4, p, form {
   justify-content: center
   padding: $card-header-padding */
 
-.card-image{
+/* .card-image{
   display: block;
   position: relative;
   &:first-child{
@@ -89,11 +90,12 @@ h1, h3, h4, p, form {
       border-bottom-right-radius: $card-radius
     }
 }
-}
+} */
 
 .card-content{
   background-color: beige;
-  padding: 5px;
+  text-align: center;
+  border-radius: 20px;
 }
 
 .container{
@@ -102,4 +104,41 @@ h1, h3, h4, p, form {
   margin-top: 15px;
   margin-bottom: 15px;
   text-align: center;
+  width: 200px;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.park-container{
+  background-color: beige;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 500px;
+  margin: auto;
+  /* padding-top: 5px; */
+}
+
+.review-container{
+  background-color: beige;
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 400px;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+/* #review-container{
+  background-color: #523c3c;
+} */
+button{
+  border-radius: 5px;
+}
+
+.content{
+  /* padding-bottom: 10px; */
+  padding: 10px;
 }

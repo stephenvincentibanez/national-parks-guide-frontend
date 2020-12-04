@@ -36,7 +36,7 @@
     function buildCard(park){
         const card = document.createElement("div")
         card.className = "card"
-        card.className = "container"
+        card.className = "park-container"
         
         let image = park.images.split(" ").find(element => element.includes("url"))
         image = image.slice(8)
@@ -109,9 +109,9 @@
     function buildReviewForm(users){
         let reviewForm = document.createElement("form")
         reviewForm.id = "review"
-        reviewForm.className = "container"
-        const h5 = document.createElement("h5")
-        h5.textContent = "Leave a Review"
+        reviewForm.className = "review-container"
+        const h4 = document.createElement("h4")
+        h4.textContent = "Leave a Review"
         const userLabel = document.createElement("label")
         userLabel.textContent = "Username: "
         const userSelect = document.createElement("select")
@@ -134,8 +134,9 @@
         
         const br1 = document.createElement('br')
         const br2 = document.createElement('br')
+        const br3 = document.createElement('br')
         
-        reviewForm.append(h5, userLabel, userSelect, br1, reviewLabel, reviewText, br2, reviewSubmit)
+        reviewForm.append(h4, userLabel, br3, userSelect, br1, reviewLabel, reviewText, br2, reviewSubmit)
         parksContainer.appendChild(reviewForm)
         reviewForm.addEventListener("submit", (e) => postReview(e))
     }
@@ -162,7 +163,6 @@
             })
         })
         .then(r => r.json())
-        // .then(e.target.username.value = "")
         .then(signUpDiv.remove())
         .then(alert("User succesfully created!"))
     }
@@ -199,47 +199,33 @@
         reviewDiv.className = "card-content"
         reviewDiv.className = "container"
 
-        const userH5 = document.createElement("h5")
-        userH5.innerText = `User: ${review.username}`
+        const userH4 = document.createElement("h4")
+        userH4.innerText = `User: ${review.username}`
 
         const reviewP = document.createElement("p")
         reviewP.setAttribute("name", "review")
         reviewP.innerText = `${review.comment}`
         reviewP.setAttribute("contentEditable", "true")
-        reviewP.addEventListener("click", (e) => handleUpdate(review, e))
-        // const updateBtn = document.createElement("button")
-        // updateBtn.textContent = "Update Review"
-        // updateBtn.addEventListener("click", (e) => handleUpdate(review, e))
+        reviewP.addEventListener("click", (e) => handleUpdate(review), {once: true})
 
         const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete Review"
         deleteBtn.addEventListener("click", (e) => handleDelete(review, e))
 
-        reviewDiv.append(userH5, reviewP, deleteBtn)
+        reviewDiv.append(userH4, reviewP, deleteBtn)
         reviewContainer.appendChild(reviewDiv)
     }
 
     //UPDATE A REVIEW
-    function handleUpdate(review, e){
-        // let form = document.getElementById("review")
-        // form.review.value = e.target.parentElement.childNodes[1].textContent.slice(8)
-        // form.username.value = e.target.parentElement.childNodes[0].textContent.slice(6)
-        // form.submit.remove()
-        
-        // const updateSubmit = document.createElement("button")
-        // updateSubmit.textContent = "Submit Updated Review"
-        // form.appendChild(updateSubmit)
-        // updateSubmit.addEventListener("click", (e) => patchReview(review, e))
+    function handleUpdate(review){
         const updateBtn = document.createElement("button")
         updateBtn.textContent = "Update Review"
         let reviewDiv = document.getElementById(`review-div-${review.id}`)
-        // debugger
         reviewDiv.appendChild(updateBtn)
         updateBtn.addEventListener("click", (e) => patchReview(review, e))
     }
 
     function patchReview(review, e){
-        // debugger
         fetch(URL + `reviews/${review.id}`, {
             method: "PATCH",
             headers: {
@@ -251,7 +237,6 @@
             })
         })
         .then(r => r.json())
-        .then(console.log)
     }
 
     //DELETE A REVIEW
