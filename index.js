@@ -9,6 +9,7 @@
     signUpForm.addEventListener("submit", (e) => postUser(e))
     const signUpDiv = document.getElementById('sign-up-div')
     const reviewContainer = document.getElementById("review-container")
+    const head = document.getElementById("head")
 
     
     //CLICKING SUBMIT ON A STATE
@@ -17,6 +18,8 @@
         signUpDiv.remove()
         photoContainer.remove()
         reviewContainer.innerHTML = ""
+        head.textContent = `${e.target.states.value} Parks`
+
         const state = e.target.states.value
         fetch(URL + `park_search?query=${state}`)
         .then(res => res.json())
@@ -33,6 +36,7 @@
     function buildCard(park){
         const card = document.createElement("div")
         card.className = "card"
+        card.className = "container"
         
         let image = park.images.split(" ").find(element => element.includes("url"))
         image = image.slice(8)
@@ -61,8 +65,7 @@
     
     //BUILDS SHOW PAGE WHEN A PARK IS CLICKED
     function showPark(park){
-        // photoContainer.innerHTML = ""
-        // signUpDiv.innerHTML = ""
+        head.textContent = park.name
         let image = park.images.split(" ").find(element => element.includes("url"))
         image = image.slice(8)
         image = image.substring(0, image.length - 3)
@@ -79,7 +82,7 @@
         <div class="card-content">
         <div class="media">
         <div class="media-content">
-        <p class="title is-4">${park.name}</p>
+       
         <p class="subtitle is-6">States: ${park.states}</p>
         <p> ${park.designation} </p>
         </div>
@@ -88,6 +91,8 @@
         <p> Location: ${park.latlong}</p>
         <p class="title is-4">Description: ${park.description}</p>
         <p> Weather Info: ${park.weather_info}</p>
+
+        <p> Entrance Fees: ${park.entrance_fees.replace(/["']/g, "")}</p>
         </div>
         </div>
         `
@@ -104,6 +109,9 @@
     function buildReviewForm(users){
         let reviewForm = document.createElement("form")
         reviewForm.id = "review"
+        reviewForm.className = "container"
+        const h5 = document.createElement("h5")
+        h5.textContent = "Leave a Review"
         const userLabel = document.createElement("label")
         userLabel.textContent = "Username: "
         const userSelect = document.createElement("select")
@@ -127,7 +135,7 @@
         const br1 = document.createElement('br')
         const br2 = document.createElement('br')
         
-        reviewForm.append(userLabel, userSelect, br1, reviewLabel, reviewText, br2, reviewSubmit)
+        reviewForm.append(h5, userLabel, userSelect, br1, reviewLabel, reviewText, br2, reviewSubmit)
         parksContainer.appendChild(reviewForm)
         reviewForm.addEventListener("submit", (e) => postReview(e))
     }
@@ -187,42 +195,51 @@
     //APPENDS REVIEW TO DOM AFTER POSTING TO DB 
     function appendReview(review){
         const reviewDiv = document.createElement("div")
+        reviewDiv.id = `review-div-${review.id}`
         reviewDiv.className = "card-content"
+        reviewDiv.className = "container"
 
-        const userH4 = document.createElement("h4")
-        userH4.innerText = `User: ${review.username}`
+        const userH5 = document.createElement("h5")
+        userH5.innerText = `User: ${review.username}`
 
         const reviewP = document.createElement("p")
         reviewP.setAttribute("name", "review")
-        reviewP.innerText = `Review: ${review.comment}`
-
-        const updateBtn = document.createElement("button")
-        updateBtn.textContent = "Update Review"
-        updateBtn.addEventListener("click", (e) => handleUpdate(review, e))
+        reviewP.innerText = `${review.comment}`
+        reviewP.setAttribute("contentEditable", "true")
+        reviewP.addEventListener("click", (e) => handleUpdate(review, e))
+        // const updateBtn = document.createElement("button")
+        // updateBtn.textContent = "Update Review"
+        // updateBtn.addEventListener("click", (e) => handleUpdate(review, e))
 
         const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete Review"
         deleteBtn.addEventListener("click", (e) => handleDelete(review, e))
 
-        reviewDiv.append(userH4, reviewP, updateBtn, deleteBtn)
+        reviewDiv.append(userH5, reviewP, deleteBtn)
         reviewContainer.appendChild(reviewDiv)
     }
 
     //UPDATE A REVIEW
     function handleUpdate(review, e){
+        // let form = document.getElementById("review")
+        // form.review.value = e.target.parentElement.childNodes[1].textContent.slice(8)
+        // form.username.value = e.target.parentElement.childNodes[0].textContent.slice(6)
+        // form.submit.remove()
+        
+        // const updateSubmit = document.createElement("button")
+        // updateSubmit.textContent = "Submit Updated Review"
+        // form.appendChild(updateSubmit)
+        // updateSubmit.addEventListener("click", (e) => patchReview(review, e))
+        const updateBtn = document.createElement("button")
+        updateBtn.textContent = "Update Review"
+        let reviewDiv = document.getElementById(`review-div-${review.id}`)
         // debugger
-        let form = document.getElementById("review")
-        form.review.value = e.target.parentElement.childNodes[1].textContent.slice(8)
-        form.username.value = e.target.parentElement.childNodes[0].textContent.slice(6)
-        form.submit.remove()
-
-        const updateSubmit = document.createElement("button")
-        updateSubmit.textContent = "Submit Updated Review"
-        form.appendChild(updateSubmit)
-        updateSubmit.addEventListener("click", (e) => patchReview(review, e))
+        reviewDiv.appendChild(updateBtn)
+        updateBtn.addEventListener("click", (e) => patchReview(review, e))
     }
 
     function patchReview(review, e){
+        // debugger
         fetch(URL + `reviews/${review.id}`, {
             method: "PATCH",
             headers: {
@@ -230,7 +247,7 @@
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                comment: e.target.parentElement.childNodes[4].value
+                comment: e.target.parentElement.childNodes[1].textContent
             })
         })
         .then(r => r.json())
