@@ -1,5 +1,5 @@
 #body{
-    background-color: beige;
+    background-color: tan;
     text-align: center;
 }
 
@@ -7,14 +7,14 @@
     margin: auto;
 }
 
-h1 {
-    text-align: center;
+h1, h3, h4, p, form {
+    /* text-align: center; */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #main-photo{
     width: auto;
-    height: 400px;
+    height: 300px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -32,6 +32,66 @@ h1 {
     margin-right: auto;
 }
 
-.card{
+
+
+/* .card{
     display: inline-block;
+} */
+
+.card{
+  display: inline-block;
+  /* display: block; */
+  border-radius: 15px;
+  box-shadow: blue;
+  color: brown;
+  max-width: 50%;
+  position: relative;
+  border-radius: 15px;
+}
+
+
+/* .card-header
+  @extend %card-item
+  background-color: $card-header-background-color
+  align-items: stretch
+  box-shadow: $card-header-shadow
+  display: flex */
+
+/* .card-header-title
+  align-items: center
+  color: $card-header-color
+  display: flex
+  flex-grow: 1
+  font-weight: $card-header-weight
+  padding: $card-header-padding
+  &.is-centered
+    justify-content: center
+
+.card-header-icon
+  align-items: center
+  cursor: pointer
+  display: flex
+  justify-content: center
+  padding: $card-header-padding */
+
+.card-image{
+  display: block;
+  position: relative;
+  &:first-child{
+    img{
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+}
+  &:last-child{
+    img{
+      border-bottom-left-radius: $card-radius
+      border-bottom-right-radius: $card-radius
+    }
+}
+}
+
+.card-content{
+  background-color: beige;
+  padding: 5px;
 }
