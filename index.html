@@ -21,21 +21,20 @@
     </div>
     <!-- <div id="map></div> -->
 
-    <br>
-
-    <div id="sign-up-div" class="container">
-    <h4> Sign Up! </h4>
-    <form id="sign-up"> 
+    <div class="float-container">
+    <div id="sign-up-div" class="container" class="float-child">
+        <form id="sign-up"> 
+        <label> Sign Up! </label><br><br>
         <label> Username: </label><br>
         <input name="username" type="text"><br>
         <input type="Submit">
     </form>
     </div>
-    <br><br>
-    
-    <div class="container">
+    <br>
+    <div class="container" class="float-child">
     <form id="state-dropdown">
-        <h4> Find Parks By State </h4>
+        <label> Find Parks By State </label>
+        <br><br>
         <select name="states">
             <option value="AL"> Alabama </option>
             <option value="AK"> Alaska </option>
@@ -92,12 +91,13 @@
         <input type="submit" value="Submit">
     </form>
     </div>  
+    </div>  
 
     <div id="parks-container"></div>
 
     <div id="review-container"></div>
     <!-- BOOTSTRAP SCRIPTS-->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> -->
 </body>
 </html>

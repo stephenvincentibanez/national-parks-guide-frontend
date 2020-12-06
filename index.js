@@ -74,20 +74,19 @@
         parkShow.id = park.id
         parkShow.className = "card"
         parkShow.innerHTML = `
+        <div class="card-content">
         <div class="card-image">
         <figure class="image is-4by3">
         <img class="list-image" src="${image}" alt="Placeholder image">
         </figure>
         </div>
-        <div class="card-content">
-        <div class="media">
-        <div class="media-content">
+  
+   
        
-        <p class="subtitle is-6">States: ${park.states}</p>
-        <p> ${park.designation} </p>
-        </div>
-        </div>
+        
         <div class="content">
+        <p> States: ${park.states}</p>
+        <p> ${park.designation} </p>
         <p> Location: ${park.latlong}</p>
         <p class="title is-4">Description: ${park.description}</p>
         <p> Weather Info: ${park.weather_info}</p>
@@ -99,7 +98,7 @@
         reviewContainer.innerHTML = ""
         getUsers()
         getReviews(park)
-        const reviewHeader = document.createElement("h3")
+        const reviewHeader = document.createElement("h2")
         reviewHeader.textContent = "Reviews"
         parksContainer.appendChild(parkShow)
         reviewContainer.appendChild(reviewHeader)
@@ -135,8 +134,10 @@
         const br1 = document.createElement('br')
         const br2 = document.createElement('br')
         const br3 = document.createElement('br')
+        const br4 = document.createElement('br')
+        const br5 = document.createElement('br')
         
-        reviewForm.append(h4, userLabel, br3, userSelect, br1, reviewLabel, reviewText, br2, reviewSubmit)
+        reviewForm.append(h4, userLabel, br3, userSelect, br5, br1, reviewLabel, br4, reviewText, br2, reviewSubmit)
         parksContainer.appendChild(reviewForm)
         reviewForm.addEventListener("submit", (e) => postReview(e))
     }
