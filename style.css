@@ -1,24 +1,20 @@
 #body{
     background-color: tan;
-    /* text-align: center; */
-    color: #080824;
+    /* color: #080824; */
+    color: black;
     margin: 0;
-    /* margin-top: 0; */
     margin-top: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 h1, h2, h4, form {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     text-align: center;
 }
 
 h2 {
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-p {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #head{
@@ -37,10 +33,6 @@ p {
     border-radius: 5px;
 }
 
-/* #state-dropdown{
-    display: inline-block
-} */
-
 .list-image{
     width: auto;
     height: 200px;
@@ -50,39 +42,47 @@ p {
     padding-top: 15px;
 }
 
+#state-dropdown, #sign-up{
+  padding-top: 10px;
+}
+
 .float-container {
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-self: auto;
 }
 
 .float-child {
-  width: 50%;
-  float: left;
-  padding: 20px;
-  display: flex;
-}  
+  flex: 1;
+  display: flex; 
+} 
+
+.grid-container{
+  display: grid;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
 
 .card{
   margin: auto;
-  /* display: inline-block; */
   border-radius: 15px;
-  color: brown;
-  max-width: 50%;
-  /* position: relative; */
+  width: 700px;
   border-radius: 15px;
   background-color: beige;
-  /* padding-bottom: 10px; */
 }
-
-.card-image{
-  /* padding-top: 1px; */
-  /* still trying to figure this out */
-}
-
 
 .card-content{
   /* text-align: left; */
   border-radius: 20px;
   /* width: 500px; */
+}
+
+.content{
+  /* padding-bottom: 10px; */
+  padding: 20px;
 }
 
 .container{
@@ -92,9 +92,19 @@ p {
   margin-bottom: 15px;
   text-align: center;
   width: 200px;
+  margin: 25px;
+  padding-bottom: 10px;
+}
+
+.review-container{
+  background-color: beige;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 400px;
   margin: auto;
   padding-bottom: 10px;
-    /* display: flex; */
 }
 
 .park-container{
@@ -104,33 +114,18 @@ p {
   margin-bottom: 10px;
 
   text-align: center;
-  width: fit-content;
+  /* width: fit-content; */
+  width: 550px;
   margin: auto;
- 
 }
 
-.review-container{
-  background-color: beige;
-  border-radius: 20px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  text-align: center;
-  width: 400px;
-  margin: auto;
-  padding-bottom: 10px;
-}
-
-/* #review-container{
-  background-color: #523c3c;
-} */
 button{
   border-radius: 5px;
+  margin: auto;
+  display: grid;
+  /* text-align: center; */
 }
 
-.content{
-  /* padding-bottom: 10px; */
-  padding: 20px;
-}
 
 /* .card-header
   @extend %card-item

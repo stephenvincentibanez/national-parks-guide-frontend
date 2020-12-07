@@ -11,6 +11,7 @@
     const reviewContainer = document.getElementById("review-container")
     const head = document.getElementById("head")
     const usersDiv = document.getElementById("users-container")
+    const showParkContainer = document.getElementById("show-park-container")
 
 
 
@@ -99,7 +100,7 @@
         getReviews(park)
         const reviewHeader = document.createElement("h2")
         reviewHeader.textContent = "Reviews"
-        parksContainer.appendChild(parkShow)
+        showParkContainer.appendChild(parkShow)
         reviewContainer.appendChild(reviewHeader)
     }
 
@@ -137,7 +138,7 @@
         const br5 = document.createElement('br')
         
         reviewForm.append(h4, userLabel, br3, userSelect, br5, br1, reviewLabel, br4, reviewText, br2, reviewSubmit)
-        parksContainer.appendChild(reviewForm)
+        showParkContainer.appendChild(reviewForm)
         reviewForm.addEventListener("submit", (e) => postReview(e))
     }
 
@@ -211,7 +212,8 @@
         const reviewDiv = document.createElement("div")
         reviewDiv.id = `review-div-${review.id}`
         reviewDiv.className = "card-content"
-        reviewDiv.className = "container"
+        // reviewDiv.className = "container"
+        reviewDiv.className = "review-container"
 
         const userH4 = document.createElement("h4")
         userH4.innerText = `User: ${review.username}`
