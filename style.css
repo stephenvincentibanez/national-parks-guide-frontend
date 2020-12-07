@@ -1,7 +1,6 @@
 #body{
     background-color: tan;
     /* text-align: center; */
-    /* color: brown; */
     color: #080824;
     margin: 0;
     /* margin-top: 0; */
@@ -14,7 +13,6 @@ h1, h2, h4, form {
 }
 
 h2 {
-  background-color: #9C9F84;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -49,8 +47,7 @@ p {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* padding-top: 15px; */
-    border-radius: 10px;
+    padding-top: 15px;
 }
 
 .float-container {
@@ -61,7 +58,7 @@ p {
   width: 50%;
   float: left;
   padding: 20px;
-  border: 2px solid red;
+  display: flex;
 }  
 
 .card{
@@ -78,6 +75,7 @@ p {
 
 .card-image{
   /* padding-top: 1px; */
+  /* still trying to figure this out */
 }
 
 
@@ -108,6 +106,7 @@ p {
   text-align: center;
   width: fit-content;
   margin: auto;
+ 
 }
 
 .review-container{

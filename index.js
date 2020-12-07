@@ -10,8 +10,10 @@
     const signUpDiv = document.getElementById('sign-up-div')
     const reviewContainer = document.getElementById("review-container")
     const head = document.getElementById("head")
+    const usersDiv = document.getElementById("users-container")
 
-    
+
+
     //CLICKING SUBMIT ON A STATE
     function handleStateSubmit(e){
         e.preventDefault()
@@ -80,9 +82,6 @@
         <img class="list-image" src="${image}" alt="Placeholder image">
         </figure>
         </div>
-  
-   
-       
         
         <div class="content">
         <p> States: ${park.states}</p>
@@ -148,6 +147,20 @@
         .then(r => r.json())
         .then(users => buildReviewForm(users))
     }
+    // getUsers()
+
+    // function iterateUsers(users){
+    //     for (const user of users){
+    //         buildUserLi(user)
+    //     }
+    // }
+
+    // function buildUserLi(user){
+    //     console.log(user)
+    //     userLi = document.createElement("li")
+    //     userLi.textContent = user.name
+    //     usersDiv.appendChild(userLi)
+    // }
     
     //USER SIGNUP AND POST TO DATABASE
     function postUser(e){
@@ -207,13 +220,16 @@
         reviewP.setAttribute("name", "review")
         reviewP.innerText = `${review.comment}`
         reviewP.setAttribute("contentEditable", "true")
-        reviewP.addEventListener("click", (e) => handleUpdate(review), {once: true})
+        reviewP.addEventListener("click", () => handleUpdate(review), {once: true})
+
+        const createdAt = document.createElement("p")
+        createdAt.textContent = `Posted: ${review.created_at.substring(0, 10)}`
 
         const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete Review"
         deleteBtn.addEventListener("click", (e) => handleDelete(review, e))
 
-        reviewDiv.append(userH4, reviewP, deleteBtn)
+        reviewDiv.append(userH4, reviewP, createdAt, deleteBtn)
         reviewContainer.appendChild(reviewDiv)
     }
 
@@ -238,7 +254,15 @@
             })
         })
         .then(r => r.json())
+        // .then(() => addUpdateDate(review))
     }
+
+    // function addUpdateDate(review){
+    //     let reviewDiv = document.getElementById(`review-div-${review.id}`)
+    //     const updatedAt = document.createElement('p')
+    //     updatedAt.textContent = `Updated: ${review.updated_at.substring(0, 10)}`
+    //     reviewDiv.appendChild(updatedAt) 
+    // }
 
     //DELETE A REVIEW
     function handleDelete(review, e){
