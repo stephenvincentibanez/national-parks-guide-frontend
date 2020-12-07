@@ -21,6 +21,7 @@
         signUpDiv.remove()
         photoContainer.remove()
         reviewContainer.innerHTML = ""
+        showParkContainer.innerHTML = ""
         head.textContent = `${e.target.states.value} Parks`
 
         const state = e.target.states.value
@@ -112,7 +113,7 @@
         const h4 = document.createElement("h4")
         h4.textContent = "Leave a Review"
         const userLabel = document.createElement("label")
-        userLabel.textContent = "Username: "
+        userLabel.textContent = "Username"
         const userSelect = document.createElement("select")
         userSelect.setAttribute("name", "username")
         for(const user of users){
@@ -148,21 +149,7 @@
         .then(r => r.json())
         .then(users => buildReviewForm(users))
     }
-    // getUsers()
 
-    // function iterateUsers(users){
-    //     for (const user of users){
-    //         buildUserLi(user)
-    //     }
-    // }
-
-    // function buildUserLi(user){
-    //     console.log(user)
-    //     userLi = document.createElement("li")
-    //     userLi.textContent = user.name
-    //     usersDiv.appendChild(userLi)
-    // }
-    
     //USER SIGNUP AND POST TO DATABASE
     function postUser(e){
         e.preventDefault()
@@ -225,13 +212,17 @@
         reviewP.addEventListener("click", () => handleUpdate(review), {once: true})
 
         const createdAt = document.createElement("p")
-        createdAt.textContent = `Posted: ${review.created_at.substring(0, 10)}`
+        createdAt.textContent = review.created_at.substring(0, 10)
+        const utc = new Date(`${createdAt.textContent}`).toUTCString().slice(0, -13)
+
+        let br1 = document.createElement('br')
+        let br2 = document.createElement('br')
 
         const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete Review"
         deleteBtn.addEventListener("click", (e) => handleDelete(review, e))
 
-        reviewDiv.append(userH4, reviewP, createdAt, deleteBtn)
+        reviewDiv.append(userH4, reviewP, utc, br1, br2, deleteBtn)
         reviewContainer.appendChild(reviewDiv)
     }
 

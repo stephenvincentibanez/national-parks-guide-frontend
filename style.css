@@ -1,4 +1,4 @@
-#body{
+body{
     background-color: tan;
     /* color: #080824; */
     color: black;
@@ -8,7 +8,6 @@
 }
 
 h1, h2, h4, form {
-    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     text-align: center;
 }
 
@@ -16,6 +15,29 @@ h2 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+button{
+  border-radius: 5px;
+  margin: auto;
+  display: inline-flex;
+  text-size-adjust: 40px;
+  /* display: grid; */
+  /* padding: 2px 5px; */
+  /* text-align: center; */
+}
+
+textarea{
+  width: 80%;
+  height: 80px;
+}
+
+select, input{
+  padding: 2px 5px;
+  margin: 8px 0;
+  border-radius: 5px;
+
+}
+
 
 #head{
   background-color: #9C9F84;
@@ -64,6 +86,7 @@ h2 {
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
 }
 
 .card{
@@ -119,12 +142,6 @@ h2 {
   margin: auto;
 }
 
-button{
-  border-radius: 5px;
-  margin: auto;
-  display: grid;
-  /* text-align: center; */
-}
 
 
 /* .card-header
