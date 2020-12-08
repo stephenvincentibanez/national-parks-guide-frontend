@@ -13,8 +13,6 @@
     const usersDiv = document.getElementById("users-container")
     const showParkContainer = document.getElementById("show-park-container")
 
-
-
     //CLICKING SUBMIT ON A STATE
     function handleStateSubmit(e){
         e.preventDefault()
@@ -52,14 +50,8 @@
         <img class="list-image"src="${image}" alt="Placeholder image">
         </figure>
         </div>
-        <div class="card-content">
-        <div class="media">
-        <div class="media-left">
-        </div>
         <div class="media-content">
         <p class="title is-4">${park.name}</p>
-        </div>
-        </div>
         </div>
         <br>
         `
@@ -69,6 +61,17 @@
     
     //BUILDS SHOW PAGE WHEN A PARK IS CLICKED
     function showPark(park){
+        // let entranceFeeObj
+        // debugger
+        // let activitiesObj = JSON.parse(park.activities.replace(/[\[\]]/g, "").replace(/(=>)/g, ":"))
+        // if (park.entrance_fees == "[]"){
+        //     // debugger
+        //     entranceFeeObj = {cost: "No cost data", description: "No description data"}
+        // }
+        // else{
+        //     // debugger
+        //     entranceFeeObj = JSON.parse(park.entrance_fees.replace(/[\[\]]/g, "").replace(/(=>)/g, ":"))
+        // }
         head.textContent = park.name
         let image = park.images.split(" ").find(element => element.includes("url"))
         image = image.slice(8)
@@ -86,13 +89,12 @@
         </div>
         
         <div class="content">
-        <p> States: ${park.states}</p>
+        <p> State: ${park.states}</p>
         <p> ${park.designation} </p>
         <p> Location: ${park.latlong}</p>
         <p class="title is-4">Description: ${park.description}</p>
         <p> Weather Info: ${park.weather_info}</p>
 
-        <p> Entrance Fees: ${park.entrance_fees.replace(/["']/g, "")}</p>
         </div>
         </div>
         `
@@ -199,7 +201,6 @@
         const reviewDiv = document.createElement("div")
         reviewDiv.id = `review-div-${review.id}`
         reviewDiv.className = "card-content"
-        // reviewDiv.className = "container"
         reviewDiv.className = "review-container"
 
         const userH4 = document.createElement("h4")
@@ -247,15 +248,7 @@
             })
         })
         .then(r => r.json())
-        // .then(() => addUpdateDate(review))
     }
-
-    // function addUpdateDate(review){
-    //     let reviewDiv = document.getElementById(`review-div-${review.id}`)
-    //     const updatedAt = document.createElement('p')
-    //     updatedAt.textContent = `Updated: ${review.updated_at.substring(0, 10)}`
-    //     reviewDiv.appendChild(updatedAt) 
-    // }
 
     //DELETE A REVIEW
     function handleDelete(review, e){
