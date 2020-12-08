@@ -83,7 +83,7 @@
         parkShow.innerHTML = `
         <div class="card-content">
         <div class="card-image">
-        <figure class="image is-4by3">
+        <figure class="image-is-4by3">
         <img class="list-image" src="${image}" alt="Placeholder image">
         </figure>
         </div>
@@ -248,6 +248,7 @@
             })
         })
         .then(r => r.json())
+        .then(alert("Review successfully updated."))
     }
 
     //DELETE A REVIEW
