@@ -82,6 +82,10 @@ input[type=submit]{
   padding-top: 10px;
 }
 
+.postDate{
+  font-size: smaller;
+}
+
 .float-container {
   display: flex;
   align-items: center;
@@ -140,7 +144,7 @@ input[type=submit]{
   text-align: center;
   width: 500px;
   margin: auto;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 
 .park-container{

@@ -210,17 +210,14 @@
         reviewP.addEventListener("click", () => handleUpdate(review), {once: true})
 
         const createdAt = document.createElement("p")
-        createdAt.textContent = review.created_at.substring(0, 10)
-        const utc = new Date(`${createdAt.textContent}`).toUTCString().slice(0, -13)
-
-        let br1 = document.createElement('br')
-        let br2 = document.createElement('br')
+        createdAt.textContent = new Date(`${review.created_at.substring(0, 10)}`).toUTCString().slice(0, -13)
+        createdAt.className = "postDate"
 
         const deleteBtn = document.createElement("button")
         deleteBtn.textContent = "Delete Review"
         deleteBtn.addEventListener("click", (e) => handleDelete(review, e))
 
-        reviewDiv.append(userH4, reviewP, utc, br1, br2, deleteBtn)
+        reviewDiv.append(userH4, reviewP, createdAt, deleteBtn)
         reviewContainer.appendChild(reviewDiv)
     }
 
