@@ -18,12 +18,12 @@ h2 {
   padding-bottom: 20px;
 }
 
-button{
+button, input[type="submit"]{
   border-radius: 5px;
   margin: auto;
   display: inline-flex;
-  text-size-adjust: 40px;
   background-color:#F7DCB4;
+  text-align: center;
 }
 
 textarea{
@@ -40,11 +40,6 @@ select, input{
   border-radius: 4px;
   background-color: #F7DCB4;
 }
-
-input[type=submit]{
-  background-color:#F7DCB4;
-}
-
 
 #head{
   background-color: #9C9F84;
