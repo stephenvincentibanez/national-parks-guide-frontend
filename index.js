@@ -124,11 +124,10 @@
             userOption.id = user.id
             userSelect.append(userOption)
         }
-        const reviewLabel = document.createElement("label")
-        reviewLabel.textContent = "Review: "
         
         const reviewText = document.createElement("textarea")
         reviewText.setAttribute("name", "review")
+        reviewText.setAttribute("placeholder", "Enter a review here!")
         
         const reviewSubmit = document.createElement("input")
         reviewSubmit.setAttribute("name", "submit")
@@ -137,10 +136,8 @@
         const br1 = document.createElement('br')
         const br2 = document.createElement('br')
         const br3 = document.createElement('br')
-        const br4 = document.createElement('br')
-        const br5 = document.createElement('br')
         
-        reviewForm.append(h4, userLabel, br3, userSelect, br5, br1, reviewLabel, br4, reviewText, br2, reviewSubmit)
+        reviewForm.append(h4, userLabel, br2, userSelect, br3, reviewText, br1, reviewSubmit)
         showParkContainer.appendChild(reviewForm)
         reviewForm.addEventListener("submit", (e) => postReview(e))
     }
