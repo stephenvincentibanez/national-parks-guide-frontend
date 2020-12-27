@@ -1,23 +1,23 @@
-#US National Parks Guide
+# US National Parks Guide
 
-##About
+## About
 
 Welcome to the US National Parks Guide! This application was created to browse parks within the United States by state and leave comments about them. This was my first solo project since starting my programming education at Flatiron School. This project was meant to solidify and expand my understanding of vanilla Javascript to manipulate the DOM and database. 
 
-##Features & Highlights
+## Features & Highlights
 
 Browse parks in the United States by state.
 Select a park to learn more about a particular park. 
 Create, read, update, and destroy a comment. 
 Create a user account in order to use the comments feature.
 
-##Technology Used
+## Technology Used
 Ruby on Rails
 Javascript
 CSS
 HTML
 
-##Installation
+## Installation
 
 1. Clone down this repo (https://github.com/stephenvincentibanez/national-parks-guide-frontend)
 
